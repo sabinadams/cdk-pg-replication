@@ -1,14 +1,11 @@
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as cdk from "aws-cdk-lib";
 import * as path from "path";
-
-import * as fs from "fs";
 import { Construct } from "constructs";
 import { randomUUID } from "crypto";
 import * as customResources from "aws-cdk-lib/custom-resources";
 
-export class CdkResourceInitializer extends Construct {
-  public readonly response: string;
+export class LambdaStack extends Construct {
   constructor(
     scope: Construct,
     id: string,
@@ -17,7 +14,6 @@ export class CdkResourceInitializer extends Construct {
     }
   ) {
     super(scope, id);
-
     const fn = new lambda.SingletonFunction(this, "Singleton", {
       uuid: randomUUID(),
       code: lambda.Code.fromAsset(path.resolve(__dirname, "../lambda")),
@@ -30,13 +26,11 @@ export class CdkResourceInitializer extends Construct {
       onEventHandler: fn,
     });
 
-    const resource = new cdk.CustomResource(this, "Resource", {
+    new cdk.CustomResource(this, "Resource", {
       serviceToken: provider.serviceToken,
       properties: {
         host: props.host,
       },
     });
-
-    this.response = resource.getAtt("Response").toString();
   }
 }
