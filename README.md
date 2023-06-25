@@ -1,14 +1,81 @@
-# Welcome to your CDK TypeScript project
+# Overview
+This repository includes an [AWS CDK](https://aws.amazon.com/cdk/) project that provides an RDS instance that is configured to work with [Pulse](https://www.prisma.io/data-platform/pulse).
 
-This is a blank project for CDK development with TypeScript.
+# Requirements (3)
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## 1. An AWS account
+If you do not already have an AWS account, you can create one [here](https://portal.aws.amazon.com/billing/signup#/start/email).
 
-## Useful commands
+## 2. AWS CLI set up locally on your machine
+Deploying the infrastructure requires an authenticated session on your local machine with AWS. Using the AWS CLI is an easy way to configure this.
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+### Install the CLI
+If you do not already have the AWS CLI installed, you can install it by following the instructions [here](https://awscli.amazonaws.com/AWSCLIV2.pkg).
+
+### Authenticate locally
+Once installed, run the following command in your terminal and follow the prompts to authenticate with AWS.
+```sh
+aws configure
+```
+
+## 3. AWS CDK set up locally on your machine
+The AWS CDK is what you the project uses to define the infrastructure to deploy. You will need to install and configure AWS CDK before deploying.
+
+### Install the CDK
+Run the following to install the `aws-cdk` CLI globally on your machine:
+
+```sh
+npm install -g aws-cdk
+```
+
+### Configure the CDK
+
+Run the following command, providing your AWS account's Account Number and preferred region.
+
+```sh
+cdk bootstrap aws://<ACCOUNT-NUMBER>/<REGION>
+```
+
+> **Note**
+> For more detailed instructions on setting up the AWS CDK, see the documentation [here](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html#getting_started_install).
+> 
+# Deploying the infrastructure
+
+To deploy the infrastructure, clone this repository and navigate into it via the terminal.
+
+### Install `node_modules`
+Run the following command to install all of the required packages:
+
+```sh
+npm i
+```
+
+### Deploy the infrastructure
+Run the following command to deploy the infrastructure:
+```sh
+cdk deploy
+```
+
+You will be prompted whether or not you actually want to deploy the infrastructure. Type `'y'` into the terminal and hit `Enter`.
+
+> **Warning**
+> The deployment will take a few minutes.
+
+# Next steps
+To quickly get up and running with Pulse follow these steps:
+1. Create a new project in Cloud Projects if you don't already have one
+2. Configure Pulse, providing the connection string from above and choosing a region close to your deployed infrastructure
+3. Get an API key for your project
+4. Clone the [pulse-starter](https://github.com/prisma/pulse-starter) repository and follow the steps in the README that walk you through the application-side of the setup
+
+# Cleaning Up
+When you are done testing, be sure to run the following command to remove all resources created by the AWS CDK if you no longer need them:
+
+```sh
+cdk destroy
+```
+
+You will be asked to confirm destroying the services. Type `'y'` and hit `Enter`. 
+
+> **Warning**
+> Leaving these resources running on your account may incur cost.
