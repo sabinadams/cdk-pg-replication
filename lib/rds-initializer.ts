@@ -50,7 +50,7 @@ export class RdsStack extends Construct {
     });
 
     new cdk.CfnOutput(this, "dbEndpoint", {
-      value: `postgresql://postgres:postgres@${this.dbInstance.instanceEndpoint.hostname}:5432/pulsedb`,
+      value: `"postgresql://postgres:postgres@${this.dbInstance.instanceEndpoint.hostname}:5432/pulsedb"`,
     });
   }
 }
