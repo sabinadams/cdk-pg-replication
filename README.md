@@ -61,6 +61,17 @@ You will be prompted whether or not you actually want to deploy the infrastructu
 > **Warning**
 > The deployment will take a few minutes.
 
+When the deployment is complete, you will see some output in the terminal containing the connection string to your new database. It should look something like:
+
+```
+Outputs:
+CdkStarterStack.RdsStackdbEndpointA78C0C53 = "postgresql://postgres:postgres@cdkstarterstack-rdsstackdbinstance9f9e170f-amypehtdybzv.cghbgyrueus2.us-east-1.rds.amazonaws.com:5432/pulsedb"
+Stack ARN:
+arn:aws:cloudformation:us-east-1:322478124336:stack/CdkStarterStack/8acd2ad0-13a4-11ee-bfaa-12d32a109459
+```
+
+You need the connection string URL starting with `postgresql://`.
+
 # Next steps
 To quickly get up and running with Pulse follow these steps:
 1. Create a new project in Cloud Projects if you don't already have one
