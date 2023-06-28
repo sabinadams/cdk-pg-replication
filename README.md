@@ -28,6 +28,17 @@ Run the following to install the `aws-cdk` CLI globally on your machine:
 npm install -g aws-cdk
 ```
 
+# Deploying the infrastructure
+
+To deploy the infrastructure, clone this repository and navigate into it via the terminal.
+
+### Install `node_modules`
+Run the following command to install all of the required packages:
+
+```sh
+npm i
+```
+
 ### Configure the CDK
 
 Run the following command, providing your AWS account's Account Number and preferred region.
@@ -39,16 +50,6 @@ cdk bootstrap aws://<ACCOUNT-NUMBER>/<REGION>
 > **Note**
 > For more detailed instructions on setting up the AWS CDK, see the documentation [here](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html#getting_started_install).
 > 
-# Deploying the infrastructure
-
-To deploy the infrastructure, clone this repository and navigate into it via the terminal.
-
-### Install `node_modules`
-Run the following command to install all of the required packages:
-
-```sh
-npm i
-```
 
 ### Deploy the infrastructure
 Run the following command to deploy the infrastructure:
