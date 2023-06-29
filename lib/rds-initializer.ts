@@ -39,6 +39,7 @@ export class RdsStack extends Construct {
         username: "postgres",
         password: SecretValue.unsafePlainText("postgres"),
       },
+      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T3, ec2.InstanceSize.MICRO),
       securityGroups: props.securityGroup,
       backupRetention: cdk.Duration.days(0),
       deleteAutomatedBackups: true,
