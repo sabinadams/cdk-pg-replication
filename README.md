@@ -28,6 +28,31 @@ Run the following to install the `aws-cdk` CLI globally on your machine:
 npm install -g aws-cdk
 ```
 
+# Description
+
+We recommend you review the code to ensure there aren't any surprises in what resources are configured (which may incur a charge on your AWS bill) and the security settings it applies. Here's a summary of what this project does:
+
+* `lib/rds-intializer.ts`: creates an RDS Postgres instance with:
+    * Version 14
+    * Instance type t3.micro
+    * Publicly accessible on port 5432
+    * `postgres` admin user with password `postgres`. You may want to change this to a more secure password or use `fromGeneratedPassword()` [as shown in this example](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_rds-readme.html#login-credentials).
+    * Uses VPC as defined below
+* `lib/network-initializer.ts`: creates a VPC with ingress rule:
+    * Allows access from any IP 
+    * Only allows access on port 5432
+
+# Deploying the infrastructure
+
+To deploy the infrastructure, clone this repository and navigate into it via the terminal.
+
+### Install `node_modules`
+Run the following command to install all of the required packages:
+
+```sh
+npm i
+```
+
 ### Configure the CDK
 
 Run the following command, providing your AWS account's Account Number and preferred region.
@@ -39,16 +64,6 @@ cdk bootstrap aws://<ACCOUNT-NUMBER>/<REGION>
 > **Note**
 > For more detailed instructions on setting up the AWS CDK, see the documentation [here](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html#getting_started_install).
 > 
-# Deploying the infrastructure
-
-To deploy the infrastructure, clone this repository and navigate into it via the terminal.
-
-### Install `node_modules`
-Run the following command to install all of the required packages:
-
-```sh
-npm i
-```
 
 ### Deploy the infrastructure
 Run the following command to deploy the infrastructure:
